@@ -1,0 +1,82 @@
+# Laboratorio 6 - Node.js
+
+## Información general
+
+**Curso:** Sistemas y Tecnologías Web  
+**Docente:** Marlon Fuentes  
+**Estudiante:** Samuel Robledo (241282)  
+**Universidad:** Universidad del Valle de Guatemala  
+
+---
+
+## Descripción
+
+Este repositorio contiene la solución del Laboratorio 6 del curso Sistemas y Tecnologías Web. El objetivo principal de esta práctica fue trabajar con un servidor básico en Node.js, identificar errores en un archivo proporcionado, corregir su funcionamiento y posteriormente ampliar sus capacidades mediante la creación de nuevas rutas y respuestas en formato JSON.
+
+El desarrollo de este laboratorio permitió reforzar conceptos fundamentales relacionados con la creación de servidores HTTP, manejo de rutas, lectura de archivos locales, devolución de respuestas en texto plano y JSON, así como el tratamiento adecuado de errores y rutas no encontradas.
+
+---
+
+## Objetivos del laboratorio
+
+- Ejecutar el servidor entregado y analizar su comportamiento.
+- Identificar errores en la implementación original.
+- Corregir las rutas existentes para que funcionen adecuadamente.
+- Verificar el funcionamiento desde un cliente.
+- Implementar nuevas rutas solicitadas en las instrucciones del laboratorio.
+- Mejorar la estructura del código para que fuera más clara y mantenible.
+
+---
+
+## Funcionalidades implementadas
+
+El servidor desarrollado incluye las siguientes rutas:
+
+### `/`
+Responde con un mensaje de texto plano indicando que el servidor se encuentra activo.
+
+### `/info`
+Responde con un objeto JSON que contiene información general del servidor, incluyendo:
+
+- mensaje
+- curso
+- tecnologia
+
+### `/saludo`
+Responde con un mensaje de texto plano definido para el laboratorio.
+
+### `/api/status`
+Responde con un objeto JSON que incluye:
+
+- ok
+- status
+- puerto
+
+### `/api/student`
+Lee la información desde el archivo `datos.json` y devuelve su contenido en formato JSON.
+
+### Rutas inexistentes
+Cuando el usuario accede a una ruta no definida, el servidor responde con estado `404` e indica cuál fue la ruta que se intentó visitar.
+
+---
+
+## Correcciones realizadas
+
+Durante el desarrollo del laboratorio se corrigieron distintos problemas presentes en el archivo original. Entre los cambios más importantes se encuentran los siguientes:
+
+- Corrección del tipo de contenido utilizado en respuestas JSON.
+- Lectura correcta del archivo `datos.json` utilizando operaciones asíncronas.
+- Conversión apropiada de la información leída a formato JSON.
+- Corrección del manejo de rutas no encontradas mediante estado `404`.
+- Incorporación de manejo de errores para evitar fallos inesperados del servidor.
+- Reorganización del código para mejorar su claridad y mantenimiento.
+
+---
+
+## Estructura del proyecto
+
+```text
+lab6-node/
+├── servidor-corregido.js
+├── datos.json
+└── solucion-lab6.md
