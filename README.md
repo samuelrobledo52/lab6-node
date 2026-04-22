@@ -7,29 +7,26 @@
   Docente: Marlon Fuentes
 </p>
 
----
 
-## Información académica
+
 
 **Estudiante:** Samuel Robledo (241282)  
 **Curso:** Sistemas y Tecnologías Web  
 **Universidad:** Universidad del Valle de Guatemala  
 
----
 
-## Descripción
+
 
 Este repositorio contiene la solución desarrollada para el **Laboratorio 6** del curso **Sistemas y Tecnologías Web**. La práctica consistió en analizar un servidor proporcionado con errores, corregir su funcionamiento y extenderlo mediante la incorporación de nuevas rutas y respuestas en formato JSON.
 
 El desarrollo fue realizado en **Node.js**, utilizando módulos nativos del entorno. A través de este laboratorio se reforzaron conceptos fundamentales relacionados con la creación de servidores HTTP, el manejo de rutas, la lectura de archivos locales, la devolución de respuestas en texto plano y JSON, así como el tratamiento adecuado de errores y rutas no encontradas.
 
----
+
 
 ## Objetivo general
 
 Corregir y mejorar un servidor HTTP en Node.js para que cumpla con los requerimientos funcionales establecidos en el laboratorio.
 
----
 
 ## Objetivos específicos
 
@@ -40,7 +37,7 @@ Corregir y mejorar un servidor HTTP en Node.js para que cumpla con los requerimi
 - Leer información desde un archivo local y exponerla mediante una ruta tipo API.
 - Documentar de manera clara y ordenada las correcciones realizadas.
 
----
+
 
 ## Funcionalidades implementadas
 
@@ -58,7 +55,6 @@ La versión final del servidor incluye las siguientes rutas:
 
 Cuando el usuario accede a una ruta no definida, el servidor responde con estado **404** e indica cuál fue la dirección que se intentó visitar.
 
----
 
 ## Correcciones realizadas
 
@@ -71,7 +67,7 @@ Durante el desarrollo del laboratorio se identificaron y corrigieron distintos p
 - Incorporación de manejo de errores para evitar fallos inesperados.
 - Reorganización del código para lograr una estructura más clara y mantenible.
 
----
+
 
 ## Estructura del proyecto
 
@@ -83,7 +79,7 @@ lab6-node/
 └── README.md
 ````
 
----
+
 
 ## Tecnologías utilizadas
 
@@ -93,7 +89,7 @@ lab6-node/
 * Módulo nativo **fs/promises**
 * Módulo nativo **path**
 
----
+
 
 ## Instrucciones de ejecución
 
@@ -123,7 +119,7 @@ http://localhost:3000/api/student
 http://localhost:3000/no-existe
 ```
 
----
+
 
 ## Ejemplos de respuesta
 
@@ -158,7 +154,7 @@ http://localhost:3000/no-existe
 }
 ```
 
----
+
 
 ## Cumplimiento de requerimientos
 
@@ -177,24 +173,22 @@ http://localhost:3000/no-existe
 * Creación de la ruta `/api/status`.
 * Mejora de la respuesta `404` mostrando la ruta no encontrada.
 
----
+
 
 ## Conclusión
 
 El desarrollo de este laboratorio permitió aplicar de forma práctica los fundamentos relacionados con la creación de servidores HTTP en Node.js. A partir de la corrección del archivo inicial y de la incorporación de nuevas funcionalidades, se obtuvo una versión del servidor más clara, funcional y ordenada, cumpliendo con los objetivos establecidos en la práctica.
 
----
+
 
 ## Autor
 
 **Samuel Robledo (241282)**
 Universidad del Valle de Guatemala
 
----
+
 
 ## Estado del proyecto
 
 **Laboratorio completado y funcional**
 
-```
-```
