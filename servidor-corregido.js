@@ -3,67 +3,80 @@ const fs = require("fs/promises");
 const path = require("path");
 
 const PORT = 3000;
+const HOST = "localhost";
 
-const server = http.createServer(async (req, res) => {
-  try {
-    if (req.url === "/") {
-      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("Servidor activo");
-      return;
-    }
+function sendText(res, statusCode, message) {
+  res.writeHead(statusCode, {
+    "Content-Type": "text/plain; charset=utf-8"
+  });
+  res.end(message);
+}
 
-    if (req.url === "/info") {
-      const data = {
+function sendJson(res, statusCode, data) {
+  res.writeHead(statusCode, {
+    "Content-Type": "application/json; charset=utf-8"
+  });
+  res.end(JSON.stringify(data, null, 2));
+}
+
+async function getStudentData() {
+  const filePath = path.join(__dirname, "datos.json");
+  const fileContent = await fs.readFile(filePath, "utf-8");
+  return JSON.parse(fileContent);
+}
+
+async function requestHandler(req, res) {
+  const requestedUrl = req.url;
+
+  switch (requestedUrl) {
+    case "/":
+      sendText(res, 200, "Servidor activo - Laboratorio 6 de Node.js");
+      break;
+
+    case "/info":
+      sendJson(res, 200, {
         mensaje: "Información del servidor",
         curso: "Sistemas y Tecnologías Web",
         tecnologia: "Node.js"
-      };
+      });
+      break;
 
-      res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-      res.end(JSON.stringify(data));
-      return;
-    }
+    case "/saludo":
+      sendText(res, 200, "Hola, bienvenido al Laboratorio 6 de Node.js.");
+      break;
 
-    if (req.url === "/saludo") {
-      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("Hola, bienvenido al laboratorio de Node.js");
-      return;
-    }
-
-    if (req.url === "/api/status") {
-      const data = {
+    case "/api/status":
+      sendJson(res, 200, {
         ok: true,
         status: "Servidor funcionando correctamente",
         puerto: PORT
-      };
+      });
+      break;
 
-      res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-      res.end(JSON.stringify(data));
-      return;
+    case "/api/student": {
+      const studentData = await getStudentData();
+      sendJson(res, 200, studentData);
+      break;
     }
 
-    if (req.url === "/api/student") {
-      const filePath = path.join(__dirname, "datos.json");
-      const texto = await fs.readFile(filePath, "utf-8");
-      const datos = JSON.parse(texto);
+    default:
+      sendText(res, 404, `Ruta no encontrada: ${requestedUrl}`);
+      break;
+  }
+}
 
-      res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-      res.end(JSON.stringify(datos));
-      return;
-    }
-
-    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end(`Ruta no encontrada: ${req.url}`);
+const server = http.createServer(async (req, res) => {
+  try {
+    await requestHandler(req, res);
   } catch (error) {
-    res.writeHead(500, { "Content-Type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({
+    sendJson(res, 500, {
       ok: false,
       error: "Error interno del servidor",
       detalle: error.message
-    }));
+    });
   }
 });
 
 server.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://${HOST}:${PORT}`);
 });
