@@ -1,82 +1,137 @@
-# Laboratorio 6 - Node.js
+Laboratorio 6: Servidor HTTP con Node.js
 
-## Información general
+Curso: Sistemas y Tecnologías Web  
+Docente: Marlon Fuentes  
+Estudiante: Samuel Robledo (241282)  
+Universidad: Universidad del Valle de Guatemala  
 
-**Curso:** Sistemas y Tecnologías Web  
-**Docente:** Marlon Fuentes  
-**Estudiante:** Samuel Robledo (241282)  
-**Universidad:** Universidad del Valle de Guatemala  
+Descripción
 
----
+El presente repositorio contiene la solución desarrollada para el Laboratorio 6 del curso Sistemas y Tecnologías Web. La práctica consistió en analizar un servidor proporcionado con errores, corregir su funcionamiento y posteriormente extenderlo mediante la implementación de nuevas rutas y respuestas en formato JSON.
 
-## Descripción
+El trabajo fue realizado en Node.js utilizando módulos nativos del entorno, con el fin de reforzar el manejo de servidores HTTP, rutas, lectura de archivos locales y control de errores. Además de corregir la implementación inicial, se procuró reorganizar el código para que su estructura final fuera más clara, ordenada y mantenible.
 
-Este repositorio contiene la solución del Laboratorio 6 del curso Sistemas y Tecnologías Web. El objetivo principal de esta práctica fue trabajar con un servidor básico en Node.js, identificar errores en un archivo proporcionado, corregir su funcionamiento y posteriormente ampliar sus capacidades mediante la creación de nuevas rutas y respuestas en formato JSON.
+Objetivo general
 
-El desarrollo de este laboratorio permitió reforzar conceptos fundamentales relacionados con la creación de servidores HTTP, manejo de rutas, lectura de archivos locales, devolución de respuestas en texto plano y JSON, así como el tratamiento adecuado de errores y rutas no encontradas.
+Corregir y mejorar un servidor HTTP en Node.js para que cumpla adecuadamente con los requerimientos funcionales establecidos en el laboratorio.
 
----
+Objetivos específicos
 
-## Objetivos del laboratorio
+- Ejecutar el archivo proporcionado e identificar los errores presentes en su implementación.
+- Corregir las rutas existentes para que respondan correctamente.
+- Incorporar nuevas rutas solicitadas en las instrucciones del laboratorio.
+- Devolver respuestas apropiadas tanto en texto plano como en formato JSON.
+- Leer información desde un archivo local y exponerla mediante una ruta de tipo API.
+- Documentar de manera ordenada las correcciones y mejoras realizadas.
 
-- Ejecutar el servidor entregado y analizar su comportamiento.
-- Identificar errores en la implementación original.
-- Corregir las rutas existentes para que funcionen adecuadamente.
-- Verificar el funcionamiento desde un cliente.
-- Implementar nuevas rutas solicitadas en las instrucciones del laboratorio.
-- Mejorar la estructura del código para que fuera más clara y mantenible.
+Funcionalidades implementadas
 
----
+La versión final del servidor incluye las siguientes rutas funcionales:
 
-## Funcionalidades implementadas
+/  
+Devuelve una respuesta en texto plano indicando que el servidor se encuentra activo.
 
-El servidor desarrollado incluye las siguientes rutas:
+/info  
+Responde con un objeto JSON que contiene información general del servidor, incluyendo un mensaje, el curso y la tecnología utilizada.
 
-### `/`
-Responde con un mensaje de texto plano indicando que el servidor se encuentra activo.
+/saludo  
+Devuelve una respuesta en texto plano con un mensaje definido para el laboratorio.
 
-### `/info`
-Responde con un objeto JSON que contiene información general del servidor, incluyendo:
+/api/status  
+Responde con un objeto JSON que indica el estado del servidor, su disponibilidad y el puerto en el que está corriendo.
 
-- mensaje
-- curso
-- tecnologia
+/api/student  
+Lee el archivo datos.json y devuelve su contenido en formato JSON.
 
-### `/saludo`
-Responde con un mensaje de texto plano definido para el laboratorio.
+/rutas inexistentes  
+Cuando el usuario accede a una ruta no definida, el servidor responde con estado 404 e indica cuál fue la ruta que se intentó visitar.
 
-### `/api/status`
-Responde con un objeto JSON que incluye:
+Correcciones realizadas
 
-- ok
-- status
-- puerto
+Durante el desarrollo del laboratorio se identificaron y corrigieron diversos problemas en el archivo original. Entre las correcciones principales se encuentran las siguientes:
 
-### `/api/student`
-Lee la información desde el archivo `datos.json` y devuelve su contenido en formato JSON.
+- Se corrigió el tipo de contenido utilizado en las respuestas JSON.
+- Se arregló la lectura del archivo datos.json mediante operaciones asíncronas.
+- Se implementó correctamente la conversión del contenido leído hacia formato JSON.
+- Se corrigió el manejo de rutas inexistentes para devolver estado 404.
+- Se incorporó un manejo básico de errores para evitar fallos inesperados.
+- Se reorganizó la estructura del código para facilitar su lectura y mantenimiento.
 
-### Rutas inexistentes
-Cuando el usuario accede a una ruta no definida, el servidor responde con estado `404` e indica cuál fue la ruta que se intentó visitar.
+Estructura del proyecto
 
----
+lab6-node/  
+├── servidor-corregido.js  
+├── datos.json  
+├── solucion-lab6.md  
+└── README.md  
 
-## Correcciones realizadas
+Tecnologías utilizadas
 
-Durante el desarrollo del laboratorio se corrigieron distintos problemas presentes en el archivo original. Entre los cambios más importantes se encuentran los siguientes:
+- Node.js
+- JavaScript
+- Módulo nativo http
+- Módulo nativo fs/promises
+- Módulo nativo path
 
-- Corrección del tipo de contenido utilizado en respuestas JSON.
-- Lectura correcta del archivo `datos.json` utilizando operaciones asíncronas.
-- Conversión apropiada de la información leída a formato JSON.
-- Corrección del manejo de rutas no encontradas mediante estado `404`.
-- Incorporación de manejo de errores para evitar fallos inesperados del servidor.
-- Reorganización del código para mejorar su claridad y mantenimiento.
+Instrucciones de ejecución
 
----
+1. Clonar el repositorio:
 
-## Estructura del proyecto
+git clone https://github.com/samuelrobledo52/lab6-node.git  
+cd lab6-node  
 
-```text
-lab6-node/
-├── servidor-corregido.js
-├── datos.json
-└── solucion-lab6.md
+2. Ejecutar el servidor:
+
+node servidor-corregido.js  
+
+3. Probar las rutas desde el navegador o desde una herramienta como curl o Postman:
+
+http://localhost:3000/  
+http://localhost:3000/info  
+http://localhost:3000/saludo  
+http://localhost:3000/api/status  
+http://localhost:3000/api/student  
+
+Ejemplo de ruta inexistente:
+
+http://localhost:3000/no-existe  
+
+Ejemplos de respuesta
+
+Respuesta de /info
+
+{
+  "mensaje": "Información del servidor",
+  "curso": "Sistemas y Tecnologías Web",
+  "tecnologia": "Node.js"
+}
+
+Respuesta de /api/status
+
+{
+  "ok": true,
+  "status": "Servidor funcionando correctamente",
+  "puerto": 3000
+}
+
+Respuesta de /api/student
+
+{
+  "nombre": "Samuel Robledo",
+  "carnet": "241282",
+  "curso": "Sistemas y Tecnologías Web",
+  "universidad": "Universidad del Valle de Guatemala"
+}
+
+Cumplimiento de requerimientos
+
+La solución final cumple con los requerimientos establecidos en ambas partes del laboratorio. En la primera parte se corrigió el archivo original, se identificaron los errores presentes y se verificó el funcionamiento de las rutas desde un cliente. En la segunda parte se modificó la ruta /info para devolver JSON, se agregó la ruta /saludo, se implementó la ruta /api/status y se mejoró la respuesta para rutas no encontradas.
+
+Conclusión
+
+El desarrollo de este laboratorio permitió aplicar de manera práctica los conceptos fundamentales relacionados con la creación de servidores HTTP en Node.js. A través de la corrección del archivo inicial y la incorporación de nuevas funcionalidades, se obtuvo una versión del servidor más clara, funcional y ordenada, cumpliendo con los objetivos planteados en la práctica.
+
+Autor
+
+Samuel Robledo (241282)  
+Universidad del Valle de Guatemala
